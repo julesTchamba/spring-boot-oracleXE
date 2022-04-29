@@ -3,10 +3,7 @@ pipeline {
     environment {
         ORACLE_XE_IMAGE='gvenzl/oracle-xe:18.4.0'
     }
-    tools {
-//         gradle 'gradle-7.2'
-//         maven 'mvn'
-    }
+
     stages {
         stage('Checkout from GitHub'){
             steps{
