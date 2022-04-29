@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   rabbitmq3:
-    #container_name: "rabbitmq"
+    container_name: "rabbitmq"
     image: rabbitmq:3.8-management-alpine
     environment:
       - RABBITMQ_DEFAULT_USER=guest
@@ -12,26 +12,28 @@ services:
       # HTTP management UI
       - '15672:15672'
   oracleXE:
+    container_name: "ora18xe"
     image: "oracle/database:18.4.0-xe"
     volumes:
       - ./oracle18.4.0XE:/opt/oracle/oradata
     ports:
-      - 51521:1521
-  application:
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:oracle:thin:@oracleXE:1521:XE
-      - SPRING_DATASOURCE_USERNAME=testuser
-      - SPRING_DATASOURCE_PASSWORD=testpassword
-      - RABBIT_HOST=rabbitmq3
-      - RABBIT_USERNAME=guest
-      - RABBIT_PASSWORD=guest
-    depends_on:
-      - oracleXE
-      - rabbitmq3
-    image: "spring-jpa-oracle:0.0.1-SNAPSHOT"
-    ports:
-      - 8080:8080
+      - 1521:1521
+#  application:
+#    environment:
+#      - SPRING_DATASOURCE_URL=jdbc:oracle:thin:@oracleXE:1521:XE
+#      - SPRING_DATASOURCE_USERNAME=C##testuser
+#      - SPRING_DATASOURCE_PASSWORD=testpassword
+#      - RABBIT_HOST=rabbitmq3
+#      - RABBIT_USERNAME=guest
+#      - RABBIT_PASSWORD=guest
+#    depends_on:
+#      - oracleXE
+#      - rabbitmq3
+#    image: "spring-jpa-oracle:0.0.1-SNAPSHOT"
+#    ports:
+#      - 8080:8080
   grafana:
+    container_name: "grafana"
     image: "grafana/grafana:latest"
     ports:
       - 3000:3000
@@ -40,14 +42,15 @@ services:
     environment:
       - GF_INSTALL_PLUGINS=grafana-dynamictext-panel
   prometheus:
+    container_name: "prometheus"
     image: "prom/prometheus:latest"
     ports:
       - 9090:9090
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-  sonarqube:
-    image: "sonarqube:8.9.3-community"
-    ports:
-      - 9000:9000
-    volumes:
-      - ./sonarqube:/opt/sonarqube/data
+#  sonarqube:
+#    image: "sonarqube:8.9.3-community"
+#    ports:
+#      - 9000:9000
+#    volumes:
+#      - ./sonarqube:/opt/sonarqube/data

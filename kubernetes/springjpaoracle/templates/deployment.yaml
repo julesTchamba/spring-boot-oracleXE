@@ -41,7 +41,7 @@ spec:
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:oracle:thin:@oracle-xe.default.svc.cluster.local:1521:XE"
             - name: SPRING_DATASOURCE_USERNAME
-              value: "testuser"
+              value: "C##testuser"
             - name: SPRING_DATASOURCE_PASSWORD
               value: "testpassword"
             - name: RABBIT_HOST
