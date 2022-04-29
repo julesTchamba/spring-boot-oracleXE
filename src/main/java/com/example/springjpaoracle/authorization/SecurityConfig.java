@@ -32,15 +32,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     @Override
     public void configure(HttpSecurity http) throws Exception
     {
+        final var STUDENT_END_P =  "/students/**";
         http.authorizeRequests()
                 .mvcMatchers(HttpMethod.GET, "/courses").permitAll()
                 .mvcMatchers(HttpMethod.POST, "/courses/score").hasAuthority(TEACHER)
                 .mvcMatchers(HttpMethod.GET, "/courses/score/student/**").hasAnyAuthority(STUDENT, TEACHER)
                 .mvcMatchers(HttpMethod.GET, "/courses/score/**").hasAuthority(TEACHER)
                 .mvcMatchers(HttpMethod.POST, "/courses/assignteacher").hasAuthority(ADMIN)
-                .mvcMatchers(HttpMethod.GET, "/students/**").hasAnyAuthority(ADMIN, "user")
-                .mvcMatchers(HttpMethod.POST, "/students/**").hasAuthority(ADMIN)
-                .mvcMatchers(HttpMethod.DELETE, "/students/**").hasAuthority(ADMIN)
+                .mvcMatchers(HttpMethod.GET, STUDENT_END_P).hasAnyAuthority(ADMIN, "user")
+                .mvcMatchers(HttpMethod.POST, STUDENT_END_P).hasAuthority(ADMIN)
+                .mvcMatchers(HttpMethod.DELETE, STUDENT_END_P).hasAuthority(ADMIN)
                 .and().cors()
                 .and().oauth2ResourceServer().jwt()
                 .jwtAuthenticationConverter(jwtAuthenticationConverter());
