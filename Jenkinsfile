@@ -11,7 +11,7 @@ pipeline {
         stage('Checkout from GitHub'){
             steps{
                 git branch: 'main',
-                url: 'https://github.com/guillempg/spring-boot-oracleXE.git'
+                url: 'https://github.com/julesTchamba/spring-boot-oracleXE.git'
             }
         }
         stage('Compile'){
