@@ -119,7 +119,7 @@ sonarqube {
         property "sonar.sources", "src/test/resources/features,src/main/java"
         property 'sonar.host.url', 'http://localhost:9000'
         property 'sonar.projectKey', 'spring-jpa-oracle'
-        property 'sonar.login', '49e208586ac4e1e9ae80674bcba0b7f095516930'
+        property 'sonar.login', '0def91b18ac029fc7cae3251f047c3f8e975ef29'
     }
 }
 

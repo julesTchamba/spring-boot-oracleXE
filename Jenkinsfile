@@ -37,33 +37,33 @@ pipeline {
                 }
             }
         }
-        stage("Sonarqube Quality Gate"){
-            steps {
-                timeout(time: 1, unit: 'HOURS') {
-                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-                    // true = set pipeline to UNSTABLE, false = don't
-                    waitForQualityGate abortPipeline: false
-                }
-            }
-        }
-        stage('Slow JUnit test'){
-            steps{
-                sh './gradlew slowJUnit'
-            }
-        }
-        stage('Cucumber tests'){
-            steps{
-                sh './gradlew cucumber'
-            }
-        }
-        stage('Generate HTML report') {
-            steps{
-                cucumber buildStatus: 'UNSTABLE',
-                    reportTitle: 'My report',
-                    fileIncludePattern: '**/cucumber.json',
-                    jsonReportDirectory: 'build'
-
-            }
-        }
+//         stage("Sonarqube Quality Gate"){
+//             steps {
+//                 timeout(time: 1, unit: 'HOURS') {
+//                     // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+//                     // true = set pipeline to UNSTABLE, false = don't
+//                     waitForQualityGate abortPipeline: true
+//                 }
+//             }
+//         }
+//         stage('Slow JUnit test'){
+//             steps{
+//                 sh './gradlew slowJUnit'
+//             }
+//         }
+//         stage('Cucumber tests'){
+//             steps{
+//                 sh './gradlew cucumber'
+//             }
+//         }
+//         stage('Generate HTML report') {
+//             steps{
+//                 cucumber buildStatus: 'UNSTABLE',
+//                     reportTitle: 'My report',
+//                     fileIncludePattern: '**/cucumber.json',
+//                     jsonReportDirectory: 'build'
+//
+//             }
+//         }
     }
 }
