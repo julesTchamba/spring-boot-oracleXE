@@ -5,7 +5,7 @@ pipeline {
     }
     tools {
         gradle 'gradle-7.2'
-        maven 'mvn'
+//         maven 'mvn'
     }
     stages {
         stage('Checkout from GitHub'){
