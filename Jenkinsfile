@@ -4,7 +4,7 @@ pipeline {
         ORACLE_XE_IMAGE='gvenzl/oracle-xe:18.4.0'
     }
     tools {
-        gradle 'gradle-7.2'
+//         gradle 'gradle-7.2'
 //         maven 'mvn'
     }
     stages {
